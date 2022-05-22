@@ -9,3 +9,4 @@ terraform.tfvars
 terraform.tfstate
 .terraform.tfstate.lock.info
 lambda_zipped
+terraform.tfstate.backup
