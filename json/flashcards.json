@@ -1,0 +1,23 @@
+[
+  {
+    "id": "gyti32gi4u1h223asf",
+    "questionContent": "What is the colour yellow?",
+    "answerContent": "Yellow!",
+    "createdAt": "2022/08/19 13:30",
+    "deckId": "12uy4g26iy23g4uiH34ILH2"
+  },
+  {
+    "id": "sa6d7asd6ag8a67s",
+    "questionContent": "What is the colour red?",
+    "answerContent": "Red!",
+    "createdAt": "2022/08/19 13:30",
+    "deckId": "78sdfh6df98h6s6iy23g4ui2"
+  },
+  {
+    "id": "09grg9j0ty9i0urt9ww",
+    "questionContent": "What is the colour blue?",
+    "answerContent": "Blue!",
+    "createdAt": "2022/08/19 13:30",
+    "deckId": "12uy4g26iy23g4uiH34ILH2"
+  }
+]
