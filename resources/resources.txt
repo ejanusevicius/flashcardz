@@ -1,0 +1,3 @@
+# AWS: Creating a Lambda using GoLang and deploying it using Terraform
+https://www.youtube.com/watch?v=CtZS6Z54Hrs
+
