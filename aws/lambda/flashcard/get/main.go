@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"github.com/ejanusevicius/flashcardz/aws/layers/database/database"
+	"github.com/ejanusevicius/flashcardz/aws/layers/database"
 )
 
 type FlashcardGetEvent struct{}
