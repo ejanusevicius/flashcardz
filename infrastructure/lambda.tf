@@ -19,18 +19,20 @@ EOF
 }
 
 resource "aws_lambda_function" "dev-golambda" {
-    function_name = "test-lambda"
-    filename = "function.zip"
-    handler = "main"
-    source_code_hash = "data.archive_file.zip.output_base64sha256"
-    role = aws_iam_role.iam_for_lambda.arn
-    runtime = "go1.x"
-    memory_size = 128
-    timeout = 10
+  depends_on = [
+    data.archive_file.go_zip
+  ]
+  function_name = "test-lambda-go"
+  filename = "/lambda_zipped/function_go.zip"
+  handler = "main"
+  role = aws_iam_role.iam_for_lambda.arn
+  runtime = "go1.x"
+  memory_size = 128
+  timeout = 10
 }
 
-data "archive_file" "zip" {
+data "archive_file" "go_zip" {
   type        = "zip"
   source_file = "../aws/lambda/flashcard/get/main"
-  output_path = "/lambda_zipped/function.zip"
+  output_path = "/lambda_zipped/function_go.zip"
 }

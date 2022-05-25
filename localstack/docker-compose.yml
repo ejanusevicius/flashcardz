@@ -15,6 +15,7 @@ services:
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - EDGE_PORT=4566
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

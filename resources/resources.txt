@@ -1,3 +1,11 @@
 # AWS: Creating a Lambda using GoLang and deploying it using Terraform
 https://www.youtube.com/watch?v=CtZS6Z54Hrs
 
+
+# Command to build Golang that runs
+GOOS=linux CGO_ENABLED=0 go build -ldflags "-s -w" -o main main.go
+
+# Run Golang lambda locally
+aws --endpoint-url=http://localhost:4566 --region us-east-1 lambda invoke --function-name "test-lambda-go" outputnode.txt && cat outputnode.txt && rm outputnode.txt
+
+
