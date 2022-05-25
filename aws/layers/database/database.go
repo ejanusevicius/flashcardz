@@ -1,9 +1,5 @@
 package database
 
-import (
-	"fmt"
-)
-
-func TestPackage() {
-	fmt.Println("Hello from database")
+func TestPackage() string {
+	return "Hello from database layer v1!"
 }

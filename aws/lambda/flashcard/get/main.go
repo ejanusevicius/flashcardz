@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-lambda-go/lambda"
+
+	"github.com/ejanusevicius/flashcardz/aws/layers/database/database"
 )
 
 type FlashcardGetEvent struct{}
@@ -13,8 +14,8 @@ type FlashcardGetResponse struct {
 }
 
 func LambdaHandler(ctx context.Context, event FlashcardGetEvent) (FlashcardGetResponse, error) {
-	fmt.Println(event)
-	return FlashcardGetResponse{Message: "Hello world, from Lambda!"}, nil
+	ReturnMessage := database.TestPackage()
+	return FlashcardGetResponse{Message: ReturnMessage}, nil
 }
 
 func main() {
