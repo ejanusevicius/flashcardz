@@ -18,18 +18,37 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
-data "archive_file" "go_zip" {
+data "archive_file" "get_flashcard_zip" {
   type        = "zip"
   source_file = "../aws-lambda/code/flashcard/get/main"
-  output_path = "/lambda_zipped/function_go.zip"
+  output_path = "/lambda_zipped/get_flashcard.zip"
 }
 
-resource "aws_lambda_function" "dev-golambda" {
+resource "aws_lambda_function" "get_flashcard" {
   depends_on = [
-    data.archive_file.go_zip
+    data.archive_file.get_flashcard_zip
   ]
-  function_name = "test-lambda-go"
-  filename = "/lambda_zipped/function_go.zip"
+  function_name = "get_flashcard"
+  filename = "/lambda_zipped/get_flashcard.zip"
+  handler = "main"
+  role = aws_iam_role.iam_for_lambda.arn
+  runtime = "go1.x"
+  memory_size = 128
+  timeout = 10
+}
+
+data "archive_file" "post_flashcard_zip" {
+  type        = "zip"
+  source_file = "../aws-lambda/code/flashcard/post/main"
+  output_path = "/lambda_zipped/post_flashcard.zip"
+}
+
+resource "aws_lambda_function" "post_flashcard" {
+  depends_on = [
+    data.archive_file.post_flashcard_zip
+  ]
+  function_name = "post_flashcard"
+  filename = "/lambda_zipped/post_flashcard.zip"
   handler = "main"
   role = aws_iam_role.iam_for_lambda.arn
   runtime = "go1.x"
