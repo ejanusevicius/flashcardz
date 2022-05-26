@@ -1,4 +1,4 @@
-module flashcard/flashcard/get
+module flashcardz/serverless-api
 
 go 1.18
 

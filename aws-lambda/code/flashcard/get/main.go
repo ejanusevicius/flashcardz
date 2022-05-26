@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 
-	"github.com/aws/aws-lambda-go/lambda"
+	"flashcardz/serverless-api/layers/database"
 
-	"github.com/ejanusevicius/flashcardz/aws/layers/database"
+	"github.com/aws/aws-lambda-go/lambda"
 )
 
 type FlashcardGetEvent struct{}

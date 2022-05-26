@@ -18,6 +18,12 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
+data "archive_file" "go_zip" {
+  type        = "zip"
+  source_file = "../aws-lambda/code/flashcard/get/main"
+  output_path = "/lambda_zipped/function_go.zip"
+}
+
 resource "aws_lambda_function" "dev-golambda" {
   depends_on = [
     data.archive_file.go_zip
@@ -29,10 +35,4 @@ resource "aws_lambda_function" "dev-golambda" {
   runtime = "go1.x"
   memory_size = 128
   timeout = 10
-}
-
-data "archive_file" "go_zip" {
-  type        = "zip"
-  source_file = "../aws/lambda/flashcard/get/main"
-  output_path = "/lambda_zipped/function_go.zip"
 }
