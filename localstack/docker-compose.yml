@@ -9,11 +9,10 @@ services:
       - "127.0.0.1:4510-4559:4510-4559" # external service port range
       - "127.0.0.1:4566:4566" # LocalStack Edge Proxy
     environment:
-      - SERVICES=s3, apigateway, lambda, iam, dynamodb, cognito-idp, rds
+      - SERVICES=apigateway, lambda, iam, dynamodb, cognito-idp, rds
       - DEBUG=1
       - DATA_DIR=/data
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
-      - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
       - DOCKER_HOST=unix:///var/run/docker.sock
       - EDGE_PORT=4566
     volumes:

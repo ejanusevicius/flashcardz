@@ -11,5 +11,6 @@ provider "aws" {
     lambda = "http://localhost:4566"
     iam = "http://localhost:4566"
     dynamodb = "http://localhost:4566"
+    apigateway = "http://localhost:4566"
   }
 }

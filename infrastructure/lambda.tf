@@ -1,5 +1,5 @@
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+resource "aws_iam_role" "lambda_execution_role" {
+  name = "lambda_execution_role"
 
   assume_role_policy = <<EOF
 {
@@ -18,39 +18,21 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
-data "archive_file" "get_flashcard_zip" {
+data "archive_file" "flashcard_zip" {
   type        = "zip"
-  source_file = "../aws-lambda/code/flashcard/get/main"
-  output_path = "/lambda_zipped/get_flashcard.zip"
+  source_file = "../serverless/flashcard/main"
+  output_path = "/lambda_zipped/flashcard.zip"
 }
 
-resource "aws_lambda_function" "get_flashcard" {
+resource "aws_lambda_function" "flashcard" {
   depends_on = [
-    data.archive_file.get_flashcard_zip
+    data.archive_file.flashcard_zip
   ]
-  function_name = "get_flashcard"
-  filename = "/lambda_zipped/get_flashcard.zip"
+  function_name = "resource_flashcard"
+  filename = "/lambda_zipped/flashcard.zip"
   handler = "main"
-  role = aws_iam_role.iam_for_lambda.arn
-  runtime = "go1.x"
-  memory_size = 128
-  timeout = 10
-}
-
-data "archive_file" "post_flashcard_zip" {
-  type        = "zip"
-  source_file = "../aws-lambda/code/flashcard/post/main"
-  output_path = "/lambda_zipped/post_flashcard.zip"
-}
-
-resource "aws_lambda_function" "post_flashcard" {
-  depends_on = [
-    data.archive_file.post_flashcard_zip
-  ]
-  function_name = "post_flashcard"
-  filename = "/lambda_zipped/post_flashcard.zip"
-  handler = "main"
-  role = aws_iam_role.iam_for_lambda.arn
+  source_code_hash = filebase64sha256("/lambda_zipped/flashcard.zip")
+  role = aws_iam_role.lambda_execution_role.arn
   runtime = "go1.x"
   memory_size = 128
   timeout = 10
